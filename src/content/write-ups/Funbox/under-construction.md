@@ -4,16 +4,16 @@ os: "Linux"
 series: "Funbox"
 description: "Exploit galore with linpeas.sh saving the day!"
 pubDate: "29-07-2026"
-heroImage: "/images/under_construction.jpg"
+heroImage: "/vulnhub-writeups-site/images/under_construction.jpg"
 difficulty: "Beginner"
 ---
 My first step was to do an NMAP scan, to see what attack vectors I had available to me
 
-![](/images/under-construction-pasted-image-20260729203937.png)
+![](/vulnhub-writeups-site/images/under-construction-pasted-image-20260729203937.png)
 
 Quite a few ports were open, however I decided I'd check out the ones I'm more familiar with first, so I checked to see what their website on port 80 had to show.
 
-The website was pretty plain, and nothing stood out to me initially, however when poking around using gobuster to check for hidden directories, I found something rather interesting![](/images/under-construction-pasted-image-20260729204635.png)
+The website was pretty plain, and nothing stood out to me initially, however when poking around using gobuster to check for hidden directories, I found something rather interesting![](/vulnhub-writeups-site/images/under-construction-pasted-image-20260729204635.png)
 
 This directory lead to an oscommerce setup page, and whilst it didn't seem like I could do much from there manually, a simple searchsploit query showed me that this would definitely a vulnerability worth chasing.
 
@@ -29,4 +29,4 @@ This handy script gave me a bunch of exploits this kernel version was susceptibl
 
 This gave me root access just like that, and I was able to grab the flag, and defeat my first CTF unassisted (Not included are my 3-ish hours being ran in circles by the kernel exploits I couldn't get to work...)
 
-![](/images/under-construction-pasted-image-20260729205835.png)
+![](/vulnhub-writeups-site/images/under-construction-pasted-image-20260729205835.png)

@@ -2,15 +2,15 @@
 title: "Lunchbreaker"
 os: "Linux"
 series: "Funbox"
-summary: "My first CTF!"
+description: "My first CTF!"
 pubDate: "28-07-2026"
 difficulty: "Beginner"
-heroImage: "/images/lunchbreaker.png"
+heroImage: "/vulnhub-writeups-site/images/lunchbreaker.png"
 ---
 
 (NOTE: This was my first CTF, so it may be a comparatively shoddy write-up compared to others, and I occasionally referenced guides when stuck)
 
-![Pasted image 20260727162338.png](/images/lunchbreaker-pasted-image-20260727162338.png)
+![Pasted image 20260727162338.png](/vulnhub-writeups-site/images/lunchbreaker-pasted-image-20260727162338.png)
 
 My initial scan showed three open ports:
 - 21 - FTP
@@ -50,4 +50,4 @@ Once inside the server, I found a todo list left behind, where john told himself
 
 This was the final thing I needed to complete the CTF, and find the flag in the root users home directory :)
 
-![Pasted image 20260728151536.png](/images/lunchbreaker-pasted-image-20260728151536.png)
+![Pasted image 20260728151536.png](/vulnhub-writeups-site/images/lunchbreaker-pasted-image-20260728151536.png)
