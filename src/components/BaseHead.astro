@@ -43,6 +43,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
+<base href={baseUrl} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
@@ -52,3 +53,43 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="og:image" content={new URL(image.src, Astro.url)} />
 
 <!-- Twitter -->
+<script>
+  (function(){
+    function getBase(){
+      const b = document.querySelector('base');
+      if (b && b.getAttribute('href')) return b.getAttribute('href');
+      return '/';
+    }
+    const base = getBase();
+    function normalizeToBase(url){
+      if(!url) return url;
+      let u = url.replace(/^\.\//, '').replace(/^public\//, '');
+      if(u.startsWith('/')) u = u.slice(1);
+      if(base.endsWith('/')) return base + u;
+      return base.replace(/\/$/, '') + '/' + u;
+    }
+    function fixImgs(root=document){
+      root.querySelectorAll('img').forEach(img=>{
+        const s = img.getAttribute('src');
+        if (s && (s.startsWith('images/') || s.startsWith('./images/') || s.startsWith('public/images/') )){
+          img.src = normalizeToBase(s);
+        }
+        const srcset = img.getAttribute('srcset');
+        if (srcset){
+          const parts = srcset.split(',').map(p=>p.trim()).map(part=>{
+            const [url, descriptor] = part.split(/\s+/);
+            let newUrl = url;
+            if(url && (url.startsWith('images/') || url.startsWith('./images/') || url.startsWith('public/images/'))){
+              newUrl = normalizeToBase(url);
+            }
+            return descriptor ? newUrl + ' ' + descriptor : newUrl;
+          });
+          img.setAttribute('srcset', parts.join(', '));
+        }
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => fixImgs()); else fixImgs();
+    const obs = new MutationObserver(() => fixImgs());
+    obs.observe(document.body, { childList: true, subtree: true });
+  })();
+</script>

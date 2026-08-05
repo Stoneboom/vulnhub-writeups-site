@@ -3,12 +3,26 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
+import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://Stoneboom.github.io',
 	base: '/vulnhub-writeups-site',
 	integrations: [mdx(), sitemap()],
+	vite: {
+		plugins: [
+			{
+				name: 'resolve-images',
+				resolveId(id, importer) {
+					if (id && id.startsWith('images/')) {
+						const resolved = path.resolve(process.cwd(), 'public', id);
+						return resolved;
+					}
+				},
+			},
+		],
+	},
 	fonts: [
 		{
 			provider: fontProviders.local(),
