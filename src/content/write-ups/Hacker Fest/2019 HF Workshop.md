@@ -1,7 +1,7 @@
 ---
 title: "2019 HF Workshop"
 os: "Linux"
-pubDate: "07-08-2019"
+pubDate: "02-09-2026"
 difficulty: "Beginner"
 series: "Hacker Fest"
 description: "Very simple starter VM used in Martin Haller's Hacker Fest workshop!"
